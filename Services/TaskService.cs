@@ -62,5 +62,22 @@ public class TaskService
 
     return task;
   }
+  public bool UpdateTask(int id, string description)
+  {
+    List<TaskItem> tasks = LoadTasks();
 
+    TaskItem? task = tasks.FirstOrDefault(task => task.Id == id);
+
+    if (task is null)
+    {
+      return false;
+    }
+
+    task.Description = description;
+    task.UpdatedAt = DateTime.Now;
+
+    // SaveTasks(tasks);
+
+    return true;
+  }
 }
