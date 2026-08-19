@@ -97,5 +97,8 @@ public class TaskService
 
     return true;
   }
-
+  public bool MarkInProgress(int id)
+  {
+    return ChangeStatus(id, TaskStatus.InProgress);
+  }
 }
