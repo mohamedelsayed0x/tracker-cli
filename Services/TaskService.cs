@@ -80,4 +80,22 @@ public class TaskService
 
     return true;
   }
+  public bool DeleteTask(int id)
+  {
+    List<TaskItem> tasks = LoadTasks();
+
+    TaskItem? task = tasks.FirstOrDefault(task => task.Id == id);
+
+    if (task is null)
+    {
+      return false;
+    }
+
+    tasks.Remove(task);
+
+    // SaveTasks(tasks);
+
+    return true;
+  }
+
 }
