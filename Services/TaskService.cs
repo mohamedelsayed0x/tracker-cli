@@ -140,5 +140,10 @@ public class TaskService
   {
     return LoadTasks();
   }
-
+  public List<TaskItem> GetTasksByStatus(TaskStatus status)
+  {
+    return LoadTasks()
+        .Where(task => task.Status == status)
+        .ToList();
+  }
 }
