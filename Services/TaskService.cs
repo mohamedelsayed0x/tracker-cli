@@ -118,4 +118,22 @@ public class TaskService
   {
     return ChangeStatus(id, TaskStatus.Done);
   }
+  private bool ChangeStatus(int id, TaskStatus status)
+  {
+    List<TaskItem> tasks = LoadTasks();
+
+    TaskItem? task = tasks.FirstOrDefault(task => task.Id == id);
+
+    if (task is null)
+    {
+      return false;
+    }
+
+    task.Status = status;
+    task.UpdatedAt = DateTime.Now;
+
+    SaveTasks(tasks);
+
+    return true;
+  }
 }
