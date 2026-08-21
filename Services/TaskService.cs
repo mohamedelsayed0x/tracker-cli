@@ -38,6 +38,19 @@ public class TaskService
       return new List<TaskItem>();
     }
   }
+  private void SaveTasks(List<TaskItem> tasks)
+  {
+    try
+    {
+      string json = JsonSerializer.Serialize(tasks, _jsonOptions);
+
+      File.WriteAllText(_filePath, json);
+    }
+    catch (IOException)
+    {
+      Console.WriteLine("Error: Could not save tasks.");
+    }
+  }
   public TaskItem AddTask(string description)
   {
     List<TaskItem> tasks = LoadTasks();
