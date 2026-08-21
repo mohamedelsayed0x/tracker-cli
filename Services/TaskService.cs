@@ -89,7 +89,7 @@ public class TaskService
     task.Description = description;
     task.UpdatedAt = DateTime.Now;
 
-    // SaveTasks(tasks);
+    SaveTasks(tasks);
 
     return true;
   }
@@ -113,5 +113,9 @@ public class TaskService
   public bool MarkInProgress(int id)
   {
     return ChangeStatus(id, TaskStatus.InProgress);
+  }
+  public bool MarkDone(int id)
+  {
+    return ChangeStatus(id, TaskStatus.Done);
   }
 }
