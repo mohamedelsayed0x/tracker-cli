@@ -136,4 +136,9 @@ public class TaskService
 
     return true;
   }
+  public List<TaskItem> GetAllTasks()
+  {
+    return LoadTasks();
+  }
+
 }
