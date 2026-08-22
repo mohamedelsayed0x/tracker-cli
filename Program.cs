@@ -46,3 +46,25 @@ switch (command)
     // ShowHelp();
     break;
 }
+void AddTask()
+{
+  if (args.Length < 2)
+  {
+    Console.WriteLine("Error: Task description is required.");
+    Console.WriteLine("Usage: dotnet run -- add \"Task description\"");
+    return;
+  }
+
+  string description = string.Join(" ", args.Skip(1)).Trim();
+
+  if (string.IsNullOrWhiteSpace(description))
+  {
+    Console.WriteLine("Error: Task description cannot be empty.");
+    return;
+  }
+
+  TaskItem task = taskService.AddTask(description);
+
+  Console.WriteLine($"Task added successfully (ID: {task.Id})");
+}
+
