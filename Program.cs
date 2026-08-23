@@ -101,3 +101,28 @@ void UpdateTask()
 
   Console.WriteLine($"Task {id} updated successfully.");
 }
+void DeleteTask()
+{
+  if (args.Length < 2)
+  {
+    Console.WriteLine("Error: Task ID is required.");
+    Console.WriteLine("Usage: dotnet run -- delete <id>");
+    return;
+  }
+
+  if (!int.TryParse(args[1], out int id))
+  {
+    Console.WriteLine("Error: Task ID must be a valid number.");
+    return;
+  }
+
+  bool deleted = taskService.DeleteTask(id);
+
+  if (!deleted)
+  {
+    Console.WriteLine($"Error: Task with ID {id} was not found.");
+    return;
+  }
+
+  Console.WriteLine($"Task {id} deleted successfully.");
+}
