@@ -151,3 +151,29 @@ void MarkInProgress()
 
   Console.WriteLine($"Task {id} marked as in-progress.");
 }
+void MarkDone()
+{
+  if (args.Length < 2)
+  {
+    Console.WriteLine("Error: Task ID is required.");
+    Console.WriteLine("Usage: dotnet run -- mark-done <id>");
+    return;
+  }
+
+  if (!int.TryParse(args[1], out int id))
+  {
+    Console.WriteLine("Error: Task ID must be a valid number.");
+    return;
+  }
+
+  bool updated = taskService.MarkDone(id);
+
+  if (!updated)
+  {
+    Console.WriteLine($"Error: Task with ID {id} was not found.");
+    return;
+  }
+
+  Console.WriteLine($"Task {id} marked as done.");
+}
+
