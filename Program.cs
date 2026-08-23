@@ -68,3 +68,36 @@ void AddTask()
   Console.WriteLine($"Task added successfully (ID: {task.Id})");
 }
 
+void UpdateTask()
+{
+  if (args.Length < 3)
+  {
+    Console.WriteLine("Error: Task ID and description are required.");
+    Console.WriteLine("Usage: dotnet run -- update <id> \"Task description\"");
+    return;
+  }
+
+  if (!int.TryParse(args[1], out int id))
+  {
+    Console.WriteLine("Error: Task ID must be a valid number.");
+    return;
+  }
+
+  string description = string.Join(" ", args.Skip(2)).Trim();
+
+  if (string.IsNullOrWhiteSpace(description))
+  {
+    Console.WriteLine("Error: Task description cannot be empty.");
+    return;
+  }
+
+  bool updated = taskService.UpdateTask(id, description);
+
+  if (!updated)
+  {
+    Console.WriteLine($"Error: Task with ID {id} was not found.");
+    return;
+  }
+
+  Console.WriteLine($"Task {id} updated successfully.");
+}
