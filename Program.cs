@@ -238,3 +238,37 @@ string GetStatusText(TaskStatus status)
     _ => "unknown"
   };
 }
+
+void ShowHelp()
+{
+  Console.WriteLine("Task Tracker CLI");
+  Console.WriteLine();
+  Console.WriteLine("Available commands:");
+  Console.WriteLine();
+  Console.WriteLine("  add <description>");
+  Console.WriteLine("      Add a new task.");
+  Console.WriteLine();
+  Console.WriteLine("  update <id> <description>");
+  Console.WriteLine("      Update an existing task.");
+  Console.WriteLine();
+  Console.WriteLine("  delete <id>");
+  Console.WriteLine("      Delete a task.");
+  Console.WriteLine();
+  Console.WriteLine("  mark-in-progress <id>");
+  Console.WriteLine("      Mark a task as in-progress.");
+  Console.WriteLine();
+  Console.WriteLine("  mark-done <id>");
+  Console.WriteLine("      Mark a task as done.");
+  Console.WriteLine();
+  Console.WriteLine("  list");
+  Console.WriteLine("      List all tasks.");
+  Console.WriteLine();
+  Console.WriteLine("  list todo");
+  Console.WriteLine("      List pending tasks.");
+  Console.WriteLine();
+  Console.WriteLine("  list in-progress");
+  Console.WriteLine("      List tasks currently in progress.");
+  Console.WriteLine();
+  Console.WriteLine("  list done");
+  Console.WriteLine("      List completed tasks.");
+}
