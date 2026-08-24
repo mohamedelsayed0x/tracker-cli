@@ -177,3 +177,53 @@ void MarkDone()
   Console.WriteLine($"Task {id} marked as done.");
 }
 
+void ListTasks()
+{
+  List<TaskItem> tasks;
+
+  if (args.Length == 1)
+  {
+    tasks = taskService.GetAllTasks();
+  }
+  else
+  {
+    string status = args[1].ToLower();
+
+    switch (status)
+    {
+      case "todo":
+        tasks = taskService.GetTasksByStatus(TaskStatus.Todo);
+        break;
+
+      case "in-progress":
+        tasks = taskService.GetTasksByStatus(TaskStatus.InProgress);
+        break;
+
+      case "done":
+        tasks = taskService.GetTasksByStatus(TaskStatus.Done);
+        break;
+
+      default:
+        Console.WriteLine($"Error: Invalid status '{args[1]}'.");
+        Console.WriteLine("Available statuses: todo, in-progress, done");
+        return;
+    }
+  }
+
+  if (tasks.Count == 0)
+  {
+    Console.WriteLine("No tasks found.");
+    return;
+  }
+
+  foreach (TaskItem task in tasks)
+  {
+    Console.WriteLine(
+        $"[{task.Id}] " +
+        $"{task.Description} " +
+        $"| Status: {GetStatusText(task.Status)} " +
+        $"| Created: {task.CreatedAt:yyyy-MM-dd HH:mm} " +
+        $"| Updated: {task.UpdatedAt:yyyy-MM-dd HH:mm}"
+    );
+  }
+}
