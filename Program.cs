@@ -1,5 +1,6 @@
 ﻿using CLI_Application.Models;
 using CLI_Application.Services;
+using TaskStatus = CLI_Application.Models.TaskStatus;
 
 TaskService taskService = new TaskService();
 
@@ -226,4 +227,14 @@ void ListTasks()
         $"| Updated: {task.UpdatedAt:yyyy-MM-dd HH:mm}"
     );
   }
+}
+string GetStatusText(TaskStatus status)
+{
+  return status switch
+  {
+    TaskStatus.Todo => "todo",
+    TaskStatus.InProgress => "in-progress",
+    TaskStatus.Done => "done",
+    _ => "unknown"
+  };
 }
