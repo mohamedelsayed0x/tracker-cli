@@ -12,3 +12,4 @@ D:\Programming\DotNet\CLI Application\obj\Debug\net10.0\refint\CLI Application.d
 D:\Programming\DotNet\CLI Application\obj\Debug\net10.0\CLI Application.pdb
 D:\Programming\DotNet\CLI Application\obj\Debug\net10.0\CLI Application.genruntimeconfig.cache
 D:\Programming\DotNet\CLI Application\obj\Debug\net10.0\ref\CLI Application.dll
+D:\Programming\DotNet\CLI Application\obj\Debug\net10.0\CLI Application.sourcelink.json
