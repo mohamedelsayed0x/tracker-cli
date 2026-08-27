@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using CLI_Application.Models;
 using TaskStatus = CLI_Application.Models.TaskStatus;
 
@@ -20,24 +21,35 @@ public class TaskService
   }
   private List<TaskItem> LoadTasks()
   {
-    try
-    {
-      string json = File.ReadAllText(_filePath);
+    string filePath = "tasks.json";
 
-      return JsonSerializer.Deserialize<List<TaskItem>>(json)
-             ?? new List<TaskItem>();
-    }
-    catch (JsonException)
+    if (!File.Exists(filePath))
     {
-      Console.WriteLine("Error: tasks.json contains invalid JSON.");
       return new List<TaskItem>();
     }
-    catch (IOException)
+
+    try
     {
-      Console.WriteLine("Error: Could not read tasks.json.");
+      string json = File.ReadAllText(filePath);
+
+      if (string.IsNullOrWhiteSpace(json))
+        return new List<TaskItem>();
+
+      var options = new JsonSerializerOptions
+      {
+        PropertyNameCaseInsensitive = true,
+        Converters = { new JsonStringEnumConverter() }
+      };
+
+      return JsonSerializer.Deserialize<List<TaskItem>>(json, options) ?? new List<TaskItem>();
+    }
+    catch (Exception)
+    {
       return new List<TaskItem>();
     }
   }
+
+
   private void SaveTasks(List<TaskItem> tasks)
   {
     try

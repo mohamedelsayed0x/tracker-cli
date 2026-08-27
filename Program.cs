@@ -14,37 +14,37 @@ string command = args[0].ToLower();
 switch (command)
 {
   case "add":
-    // AddTask();
+    AddTask();
     break;
 
   case "update":
-    // UpdateTask();
+    UpdateTask();
     break;
 
   case "delete":
-    // DeleteTask();
+    DeleteTask();
     break;
 
   case "mark-in-progress":
-    // MarkInProgress();
+    MarkInProgress();
     break;
 
   case "mark-done":
-    // MarkDone();
+    MarkDone();
     break;
 
   case "list":
-    // ListTasks();
+    ListTasks();
     break;
 
   case "help":
-    // ShowHelp();
+    ShowHelp();
     break;
 
   default:
     Console.WriteLine($"Unknown command: '{args[0]}'.");
     Console.WriteLine();
-    // ShowHelp();
+    ShowHelp();
     break;
 }
 void AddTask()
