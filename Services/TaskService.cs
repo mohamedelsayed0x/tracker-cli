@@ -110,7 +110,7 @@ public class TaskService
 
     tasks.Remove(task);
 
-    // SaveTasks(tasks);
+    SaveTasks(tasks);
 
     return true;
   }
